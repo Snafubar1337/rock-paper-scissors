@@ -22,4 +22,35 @@ function playRound(playerSelection, computerSelection){
     else return "Uh, oh. Something went wrong!";
 }
 
-console.log(playRound("Rock", computerPlay()));
+function game(){
+    let playerWins = 0;
+    let computerWins = 0;
+    let draws = 0;
+    for(let i= 0;i<5;i++){
+        let result = playRound(prompt("Choose Rock, Paper or Scissors:",computerPlay));
+        console.log(result);
+        switch(result){
+            case "You both won! Yay!":
+                draws++;
+            case "Paper beats Rock. Computer won!":
+                computerWins++;
+            case "Rock beats Scissors. Player won!":
+                playerWins++;
+            case "Scissors beats Paper. Player won!":
+                playerWins++;
+            case "Rock beats Scissors. Computer won!":
+                computerWins++;
+            case "Paper beats rock. Player won!":
+                computerWins++; 
+            case "Scissors beats Paper. Player won!":
+                playerWins++;   
+            default:
+                console.log("Whoopsie in switch!");
+        }
+    }
+    if(playerWins === computerWins) return "It's a draw!";
+    return playerWins > computerWins ? `You won ${playerWins} times and are the overall winner!` :
+                                        `The Computer won ${computerWins} times and is the overall winner!`;
+}
+
+console.log(game());
